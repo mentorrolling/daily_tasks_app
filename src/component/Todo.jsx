@@ -2,6 +2,7 @@ import React, { useState, useEffect, useReducer } from "react";
 import { reducer } from "../helpers/functionReducer";
 import FormTodo from "./FormTodo";
 import ListTodo from "./ListTodo";
+import Logo from "../img/pushpin.png";
 function init() {
   return JSON.parse(localStorage.getItem("tareas")) || [];
 }
@@ -67,7 +68,10 @@ export default function Todo() {
           <div className="col">
             <div className="card">
               <div className="card-body text-center">
-                <h1 className="card-title">📌TasksApp</h1>
+                <h1 className="card-title">
+                  <img className="pb-2" src={Logo} alt="Logo" />
+                  TasksApp
+                </h1>
                 <FormTodo
                   handleChange={handleChange}
                   formValues={formValues}
