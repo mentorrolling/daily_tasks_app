@@ -3,6 +3,8 @@ import { reducer } from "../helpers/functionReducer";
 import FormTodo from "./FormTodo";
 import ListTodo from "./ListTodo";
 import Logo from "../img/pushpin.png";
+
+import moment from "moment";
 function init() {
   return JSON.parse(localStorage.getItem("tareas")) || [];
 }
@@ -12,6 +14,7 @@ export default function Todo() {
   const [formValues, setFormValues] = useState({
     id: "",
     tarea: "",
+    fecha: "",
     done: false,
   });
   const [count, setCount] = useState(0);
@@ -35,6 +38,7 @@ export default function Todo() {
     setFormValues({
       id: "",
       tarea: "",
+      fecha: "",
       done: false,
     });
   };
@@ -43,6 +47,7 @@ export default function Todo() {
     setFormValues({
       id: new Date().getTime(),
       [target.name]: target.value,
+      fecha: moment().format("L"),
       done: false,
     });
   };
