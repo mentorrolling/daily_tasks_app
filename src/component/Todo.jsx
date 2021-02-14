@@ -44,6 +44,7 @@ export default function Todo() {
       fecha: "",
       done: false,
     });
+    setStartDate(new Date());
   };
 
   const handleChange = ({ target }) => {

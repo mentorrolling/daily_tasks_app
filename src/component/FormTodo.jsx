@@ -14,28 +14,32 @@ export default function FormTodo({
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
+        <div className="input-group mb-2">
           <input
             className="form-control"
             type="text"
             name="tarea"
-            placeholder="Nueva tarea"
+            placeholder="Nueva tarea..."
             autoComplete="off"
             maxLength="30"
             onChange={handleChange}
             value={formValues.tarea}
+            required
           />
+          <div className="input-group-append">
+            <button className="btn btn-outline-info" type="submit">
+              +
+            </button>
+          </div>
         </div>
-        <div className="form-group ">
+        <div className="input-group ">
           <DatePicker
-            className="form-control"
+            className="form-control "
             selected={startDate}
             onChange={(date) => setStartDate(date)}
           />
         </div>
-        {/* <button className="btn btn-info" type="submit">
-          Agregar
-        </button> */}
+        <div></div>
       </form>
     </>
   );
