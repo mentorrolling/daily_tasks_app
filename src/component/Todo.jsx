@@ -11,17 +11,20 @@ function init() {
 
 export default function Todo() {
   const [state, dispatch] = useReducer(reducer, [], init);
+
   const [formValues, setFormValues] = useState({
     id: "",
     tarea: "",
     fecha: "",
     done: false,
   });
+  const [startDate, setStartDate] = useState(new Date());
   const [count, setCount] = useState(0);
 
   useEffect(() => {
     localStorage.setItem("tareas", JSON.stringify(state));
     // handleCount();
+
     let cantidad = state.filter((item) => item.done === false);
     setCount(cantidad.length);
   }, [state]);
@@ -47,7 +50,7 @@ export default function Todo() {
     setFormValues({
       id: new Date().getTime(),
       [target.name]: target.value,
-      fecha: moment().format("L"),
+      fecha: moment(startDate).format("L"),
       done: false,
     });
   };
@@ -81,6 +84,8 @@ export default function Todo() {
                   handleChange={handleChange}
                   formValues={formValues}
                   handleSubmit={handleSubmit}
+                  startDate={startDate}
+                  setStartDate={setStartDate}
                 />
                 <p className="card-text text-center mt-3">
                   Tareas pendientes <b>{count}</b> de <b>{state.length}</b>
