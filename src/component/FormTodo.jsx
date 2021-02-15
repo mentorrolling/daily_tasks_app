@@ -1,22 +1,44 @@
 import React from "react";
+import DatePicker from "react-datepicker";
 
-export default function FormTodo({ formValues, handleChange, handleSubmit }) {
+import "react-datepicker/dist/react-datepicker.css";
+import "../css/form.css";
+
+export default function FormTodo({
+  formValues,
+  handleChange,
+  handleSubmit,
+  startDate,
+  setStartDate,
+}) {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <input
-          className="form-control"
-          type="text"
-          name="tarea"
-          placeholder="Nueva tarea"
-          autoComplete="off"
-          maxLength="30"
-          onChange={handleChange}
-          value={formValues.tarea}
-        />
-        {/* <button className="btn btn-info" type="submit">
-          Agregar
-        </button> */}
+        <div className="input-group mb-2 ">
+          <input
+            className="form-control"
+            type="text"
+            name="tarea"
+            placeholder="Nueva tarea..."
+            autoComplete="off"
+            maxLength="30"
+            onChange={handleChange}
+            value={formValues.tarea}
+            required
+          />
+          <div className="input-group-append">
+            <button className="btn btn-outline-info" type="submit">
+              +
+            </button>
+          </div>
+        </div>
+        <div className="input-group">
+          <DatePicker
+            className="form-control "
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+          />
+        </div>
       </form>
     </>
   );

@@ -2,25 +2,34 @@ import React, { useState, useEffect, useReducer } from "react";
 import { reducer } from "../helpers/functionReducer";
 import FormTodo from "./FormTodo";
 import ListTodo from "./ListTodo";
+import Logo from "../img/pushpin.png";
+
+import moment from "moment";
 function init() {
   return JSON.parse(localStorage.getItem("tareas")) || [];
 }
 
 export default function Todo() {
   const [state, dispatch] = useReducer(reducer, [], init);
+
   const [formValues, setFormValues] = useState({
     id: "",
     tarea: "",
+    fecha: "",
     done: false,
   });
-  const [count, setCount] = useState(0);
+  const [startDate, setStartDate] = useState(new Date());
 
   useEffect(() => {
     localStorage.setItem("tareas", JSON.stringify(state));
-    // handleCount();
-    let cantidad = state.filter((item) => item.done === false);
-    setCount(cantidad.length);
   }, [state]);
+
+  useEffect(() => {
+    setFormValues({
+      ...formValues,
+      fecha: moment(startDate).format("L"),
+    });
+  }, [startDate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,14 +43,17 @@ export default function Todo() {
     setFormValues({
       id: "",
       tarea: "",
+      fecha: "",
       done: false,
     });
+    setStartDate(new Date());
   };
 
   const handleChange = ({ target }) => {
     setFormValues({
       id: new Date().getTime(),
       [target.name]: target.value,
+      fecha: moment(startDate).format("L"),
       done: false,
     });
   };
@@ -67,26 +79,22 @@ export default function Todo() {
           <div className="col">
             <div className="card">
               <div className="card-body text-center">
-                <h1 className="card-title">📌TasksApp</h1>
+                <h1 className="card-title">
+                  <img className="pb-2" src={Logo} alt="Logo" />
+                  TasksApp
+                </h1>
                 <FormTodo
                   handleChange={handleChange}
                   formValues={formValues}
                   handleSubmit={handleSubmit}
+                  startDate={startDate}
+                  setStartDate={setStartDate}
                 />
-                <p className="card-text text-center mt-3">
-                  Tareas pendientes <b>{count}</b> de <b>{state.length}</b>
-                  <button
-                    className="btn btn-danger pt-0 ml-3"
-                    onClick={deleteTaskDone}
-                  >
-                    x
-                  </button>
-                </p>
               </div>
               <ListTodo
                 state={state}
                 toggle={toggle}
-                handleDelete={handleDelete}
+                deleteTaskDone={deleteTaskDone}
               />
             </div>
           </div>
