@@ -19,6 +19,7 @@ export default function Todo() {
     done: false,
   });
   const [startDate, setStartDate] = useState(new Date());
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     localStorage.setItem("tareas", JSON.stringify(state));
@@ -40,6 +41,7 @@ export default function Todo() {
     }
 
     dispatch({ type: "add", payload: formValues });
+    setShow(true);
     setFormValues({
       id: "",
       tarea: "",
@@ -47,6 +49,10 @@ export default function Todo() {
       done: false,
     });
     setStartDate(new Date());
+
+    setTimeout(() => {
+      setShow(false);
+    }, 1000);
   };
 
   const handleChange = ({ target }) => {
@@ -89,6 +95,7 @@ export default function Todo() {
                   handleSubmit={handleSubmit}
                   startDate={startDate}
                   setStartDate={setStartDate}
+                  show={show}
                 />
               </div>
               <ListTodo

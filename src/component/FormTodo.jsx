@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
@@ -10,7 +10,9 @@ export default function FormTodo({
   handleSubmit,
   startDate,
   setStartDate,
+  show,
 }) {
+  useEffect(() => {}, [startDate]);
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -32,13 +34,19 @@ export default function FormTodo({
             </button>
           </div>
         </div>
-        <div className="input-group">
+
+        <div className="input-group mb-2">
           <DatePicker
             className="form-control "
             selected={startDate}
             onChange={(date) => setStartDate(date)}
           />
         </div>
+        {show && (
+          <div className="alert alert-primary" role="alert">
+            Success!
+          </div>
+        )}
       </form>
     </>
   );
