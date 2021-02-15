@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
+import "../css/form.css";
 
 export default function FormTodo({
   formValues,
@@ -10,7 +11,6 @@ export default function FormTodo({
   startDate,
   setStartDate,
 }) {
-  // const [startDate, setStartDate] = useState(new Date());
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -32,7 +32,7 @@ export default function FormTodo({
             </button>
           </div>
         </div>
-        <div className="input-group ">
+        <div className="input-group mpl-auto">
           <DatePicker
             className="form-control "
             selected={startDate}

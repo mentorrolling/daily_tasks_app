@@ -1,16 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import moment from "moment";
 
 import "../css/todo.css";
+import CountText from "./CountText";
 
-export default function ListTodo({ state, handleDelete, toggle }) {
+export default function ListTodo({ state, deleteTaskDone, toggle }) {
   const newArray = state.filter((item) => {
     return moment(item.fecha).isSameOrBefore(moment().format());
   });
-  // console.log(newArray);
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    let cantidad = newArray.filter((item) => item.done === false);
+    setCount(cantidad.length);
+  }, [state]);
+
   return (
     <>
+      <CountText
+        count={count}
+        state={newArray}
+        deleteTaskDone={deleteTaskDone}
+      />
       <ul className="list-group list-group-flush">
         {newArray.map((tarea) => (
           <li

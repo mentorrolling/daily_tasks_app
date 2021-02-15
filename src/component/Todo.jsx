@@ -19,14 +19,9 @@ export default function Todo() {
     done: false,
   });
   const [startDate, setStartDate] = useState(new Date());
-  const [count, setCount] = useState(0);
 
   useEffect(() => {
     localStorage.setItem("tareas", JSON.stringify(state));
-    // handleCount();
-
-    let cantidad = state.filter((item) => item.done === false);
-    setCount(cantidad.length);
   }, [state]);
 
   const handleSubmit = (e) => {
@@ -88,20 +83,11 @@ export default function Todo() {
                   startDate={startDate}
                   setStartDate={setStartDate}
                 />
-                <p className="card-text text-center mt-3">
-                  Tareas pendientes <b>{count}</b> de <b>{state.length}</b>
-                  <button
-                    className="btn btn-danger pt-0 ml-3"
-                    onClick={deleteTaskDone}
-                  >
-                    x
-                  </button>
-                </p>
               </div>
               <ListTodo
                 state={state}
                 toggle={toggle}
-                handleDelete={handleDelete}
+                deleteTaskDone={deleteTaskDone}
               />
             </div>
           </div>
