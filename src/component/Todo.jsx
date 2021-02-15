@@ -24,6 +24,13 @@ export default function Todo() {
     localStorage.setItem("tareas", JSON.stringify(state));
   }, [state]);
 
+  useEffect(() => {
+    setFormValues({
+      ...formValues,
+      fecha: moment(startDate).format("L"),
+    });
+  }, [startDate]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
 

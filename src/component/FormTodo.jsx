@@ -14,7 +14,7 @@ export default function FormTodo({
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <div className="input-group mb-2">
+        <div className="input-group mb-2 ">
           <input
             className="form-control"
             type="text"
@@ -32,14 +32,13 @@ export default function FormTodo({
             </button>
           </div>
         </div>
-        <div className="input-group mpl-auto">
+        <div className="input-group">
           <DatePicker
             className="form-control "
             selected={startDate}
             onChange={(date) => setStartDate(date)}
           />
         </div>
-        <div></div>
       </form>
     </>
   );

@@ -28,14 +28,17 @@ export default function ListTodo({ state, deleteTaskDone, toggle }) {
           <li
             key={tarea.id}
             onClick={() => toggle(tarea.id)}
+            // className="list-group-item"
             className={
-              tarea.done === true
-                ? " list-group-item tachado"
+              moment(tarea.fecha).isBefore(moment().format("L"))
+                ? " list-group-item bg-warning"
                 : "list-group-item"
             }
           >
-            {tarea.done === true ? "✔" : "📌"}
-            {tarea.tarea}
+            <span className={tarea.done === true ? "tachado" : ""}>
+              {tarea.done === true ? "✔" : "📌"}
+              {tarea.tarea}
+            </span>
             {/* <button
               className="btn btn-danger"
               onClick={() => {
