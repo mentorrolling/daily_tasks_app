@@ -2,6 +2,8 @@ import React, { useState, useEffect, useReducer } from "react";
 import { reducer } from "../helpers/functionReducer";
 import FormTodo from "./FormTodo";
 import ListTodo from "./ListTodo";
+
+import { Form } from "react-bootstrap";
 import Logo from "../img/pushpin.png";
 
 import moment from "moment";
@@ -20,6 +22,7 @@ export default function Todo() {
   });
   const [startDate, setStartDate] = useState(new Date());
   const [show, setShow] = useState(false);
+  const [switcher, setSwitcher] = useState(false);
 
   useEffect(() => {
     localStorage.setItem("tareas", JSON.stringify(state));
@@ -78,13 +81,26 @@ export default function Todo() {
       payload: tareaID,
     });
   };
+
+  const handleSwitch = () => {
+    setSwitcher(!switcher);
+  };
   return (
     <>
       <div className="container">
         <div className="row mt-3">
           <div className="col">
             <div className="card">
-              <div className="card-body text-center">
+              <div className="col mt-3 ">
+                <Form.Check
+                  className="float-right"
+                  type="switch"
+                  id="custom-switch"
+                  checked={switcher}
+                  onChange={handleSwitch}
+                />
+              </div>
+              <div className="card-body text-center pt-0">
                 <h1 className="card-title">
                   <img className="pb-2" src={Logo} alt="Logo" />
                   TasksApp

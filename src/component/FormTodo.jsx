@@ -40,6 +40,7 @@ export default function FormTodo({
             className="form-control "
             selected={startDate}
             onChange={(date) => setStartDate(date)}
+            type="date"
           />
         </div>
         {show && (
