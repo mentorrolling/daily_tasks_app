@@ -78,12 +78,17 @@ export default function ListTodo({
               {tarea.done === true ? "✔" : "📌"}
               {tarea.tarea}
             </span>
-            <span
-              className=" float-right lheight"
-              onClick={() => handleShow(tarea.id)}
-            >
-              <i className="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
-            </span>
+            {tarea.done === false && (
+              <span
+                className=" float-right lheight"
+                onClick={() => handleShow(tarea.id)}
+              >
+                <i
+                  className="fa fa-pencil-square-o fa-lg"
+                  aria-hidden="true"
+                ></i>
+              </span>
+            )}
             {/* <button
               className="btn btn-danger"
               onClick={() => {
