@@ -5,6 +5,7 @@ import ListTodo from "./ListTodo";
 
 import { Form } from "react-bootstrap";
 import Logo from "../img/pushpin.png";
+import LogoDark from "../img/pushpin_darkmode.png";
 
 import moment from "moment";
 function init() {
@@ -112,8 +113,16 @@ export default function Todo() {
                 />
               </div>
               <div className="card-body text-center pt-0">
-                <h1 className="card-title">
-                  <img className="pb-2" src={Logo} alt="Logo" />
+                <h1
+                  className={
+                    switcher ? "card-title letrasDarkMode" : "card-title"
+                  }
+                >
+                  <img
+                    className="pb-2"
+                    src={switcher ? LogoDark : Logo}
+                    alt="Logo"
+                  />
                   TasksApp
                 </h1>
                 <FormTodo
