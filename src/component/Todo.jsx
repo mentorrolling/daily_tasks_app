@@ -74,6 +74,9 @@ export default function Todo() {
   const handleDelete = (tareaID) => {
     dispatch({ type: "delete", payload: tareaID });
   };
+  const handleUpdate = (tarea) => {
+    dispatch({ type: "update", payload: tarea });
+  };
 
   const toggle = (tareaID) => {
     dispatch({
@@ -118,44 +121,14 @@ export default function Todo() {
                 state={state}
                 toggle={toggle}
                 deleteTaskDone={deleteTaskDone}
+                startDate={startDate}
+                setStartDate={setStartDate}
+                handleUpdate={handleUpdate}
               />
             </div>
           </div>
         </div>
       </div>
-
-      {/* <div className="container">
-        <div className="row">
-          <div className="col text-center">
-            <h1>📌TasksApp</h1>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col text-center">
-            <FormTodo
-              handleChange={handleChange}
-              formValues={formValues}
-              handleSubmit={handleSubmit}
-            />
-          </div>
-        </div>
-        <div className="row mb-3">
-          <div className="col text-center">
-            <span>
-              Tareas pendientes {count} de {state.length}
-            </span>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col">
-            <ListTodo
-              state={state}
-              toggle={toggle}
-              handleDelete={handleDelete}
-            />
-          </div>
-        </div>
-      </div> */}
     </>
   );
 }

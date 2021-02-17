@@ -6,20 +6,52 @@ import "../css/todo.css";
 import CountText from "./CountText";
 import ModalTask from "./ModalTask";
 
-export default function ListTodo({ state, deleteTaskDone, toggle }) {
+export default function ListTodo({
+  state,
+  deleteTaskDone,
+  toggle,
+  handleUpdate,
+}) {
   const newArray = state.filter((item) => {
     return moment(item.fecha).isSameOrBefore(moment().format());
   });
   const [count, setCount] = useState(0);
+  const [tarea, setTarea] = useState({});
+  const [fechita, setFechita] = useState("");
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = (id) => {
+    setShow(true);
+    let tarea = state.filter((item) => item.id === id);
+    setTarea(tarea[0]);
+  };
 
   useEffect(() => {
     let cantidad = newArray.filter((item) => item.done === false);
     setCount(cantidad.length);
   }, [state]);
 
+  useEffect(() => {
+    setTarea({
+      ...tarea,
+
+      fecha: moment(fechita).format("L"),
+    });
+  }, [fechita]);
+
+  const changeTarea = ({ target }) => {
+    setTarea({
+      ...tarea,
+      [target.name]: target.value,
+      fecha: moment(fechita).format("L"),
+    });
+  };
+
+  const submitTarea = (e) => {
+    e.preventDefault();
+    console.log("Submit");
+    handleUpdate(tarea);
+  };
   return (
     <>
       <CountText
@@ -46,8 +78,11 @@ export default function ListTodo({ state, deleteTaskDone, toggle }) {
               {tarea.done === true ? "✔" : "📌"}
               {tarea.tarea}
             </span>
-            <span className=" float-right lheight" onClick={handleShow}>
-              <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
+            <span
+              className=" float-right lheight"
+              onClick={() => handleShow(tarea.id)}
+            >
+              <i className="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
             </span>
             {/* <button
               className="btn btn-danger"
@@ -60,7 +95,15 @@ export default function ListTodo({ state, deleteTaskDone, toggle }) {
           </li>
         ))}
       </ul>
-      <ModalTask show={show} handleClose={handleClose} />
+      <ModalTask
+        show={show}
+        handleClose={handleClose}
+        tarea={tarea}
+        fechita={fechita}
+        setFechita={setFechita}
+        submitTarea={submitTarea}
+        changeTarea={changeTarea}
+      />
     </>
   );
 }
