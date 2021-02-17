@@ -41,6 +41,7 @@ export default function FormTodo({
             selected={startDate}
             onChange={(date) => setStartDate(date)}
             type="date"
+            maxLength="10"
           />
         </div>
         {show && (

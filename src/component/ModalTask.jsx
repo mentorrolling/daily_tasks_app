@@ -33,6 +33,7 @@ export default function ModalTask({
                 name="tarea"
                 value={tarea.tarea}
                 onChange={changeTarea}
+                maxLength="10"
               />
             </Form.Group>
             <Form.Group>

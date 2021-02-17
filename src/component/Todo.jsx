@@ -35,6 +35,14 @@ export default function Todo() {
     });
   }, [startDate]);
 
+  useEffect(() => {
+    if (switcher) {
+      document.body.style = "background:black;";
+    } else {
+      document.body.style = "";
+    }
+  }, [switcher]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
