@@ -13,6 +13,7 @@ export default function ModalTask({
   submitTarea,
   fechita,
   setFechita,
+  switcher,
 }) {
   useEffect(() => {
     setFechita(moment(tarea.fecha).format("YYYY MM DD"));
@@ -53,10 +54,17 @@ export default function ModalTask({
             </Form.Group>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
+            <Button
+              variant={switcher ? "outline-secondary" : "secondary"}
+              onClick={handleClose}
+            >
               Close
             </Button>
-            <Button variant="primary" type="submit" onClick={handleClose}>
+            <Button
+              variant={switcher ? "outline-info" : "info"}
+              type="submit"
+              onClick={handleClose}
+            >
               Update
             </Button>
           </Modal.Footer>

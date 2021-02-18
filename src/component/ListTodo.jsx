@@ -11,6 +11,7 @@ export default function ListTodo({
   deleteTaskDone,
   toggle,
   handleUpdate,
+  switcher,
 }) {
   const newArray = state.filter((item) => {
     return moment(item.fecha).isSameOrBefore(moment().format());
@@ -58,6 +59,7 @@ export default function ListTodo({
         count={count}
         state={newArray}
         deleteTaskDone={deleteTaskDone}
+        switcher={switcher}
       />
       <ul className="list-group list-group-flush">
         {newArray.map((tarea) => (
@@ -108,6 +110,7 @@ export default function ListTodo({
         setFechita={setFechita}
         submitTarea={submitTarea}
         changeTarea={changeTarea}
+        switcher={switcher}
       />
     </>
   );

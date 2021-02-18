@@ -8,6 +8,8 @@ import Logo from "../img/pushpin.png";
 import LogoDark from "../img/pushpin_darkmode.png";
 
 import moment from "moment";
+
+import "../css/estilo.css";
 function init() {
   return JSON.parse(localStorage.getItem("tareas")) || [];
 }
@@ -36,13 +38,16 @@ export default function Todo() {
     });
   }, [startDate]);
 
+  //Dark Mode-----------------
   useEffect(() => {
     if (switcher) {
-      document.body.style = "background:black;";
+      // document.body.style = "background:black;";
+      document.body.classList.add("dark-theme");
     } else {
-      document.body.style = "";
+      document.body.classList.remove("dark-theme");
     }
   }, [switcher]);
+  //-------------------------
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -105,7 +110,7 @@ export default function Todo() {
             <div className="card">
               <div className="col mt-3 ">
                 <Form.Check
-                  className="float-right"
+                  className="float-right switch"
                   type="switch"
                   id="custom-switch"
                   checked={switcher}
@@ -132,6 +137,7 @@ export default function Todo() {
                   startDate={startDate}
                   setStartDate={setStartDate}
                   show={show}
+                  switcher={switcher}
                 />
               </div>
               <ListTodo
@@ -141,6 +147,7 @@ export default function Todo() {
                 startDate={startDate}
                 setStartDate={setStartDate}
                 handleUpdate={handleUpdate}
+                switcher={switcher}
               />
             </div>
           </div>

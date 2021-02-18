@@ -11,6 +11,7 @@ export default function FormTodo({
   startDate,
   setStartDate,
   show,
+  switcher,
 }) {
   // useEffect(() => {}, [startDate]);
   return (
@@ -29,7 +30,10 @@ export default function FormTodo({
             required
           />
           <div className="input-group-append">
-            <button className="btn btn-outline-info" type="submit">
+            <button
+              className={switcher ? "btn btn-outline-info" : "btn btn-info"}
+              type="submit"
+            >
               +
             </button>
           </div>
