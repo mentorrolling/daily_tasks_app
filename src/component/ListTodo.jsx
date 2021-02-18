@@ -106,7 +106,6 @@ export default function ListTodo({
         show={show}
         handleClose={handleClose}
         tarea={tarea}
-        fechita={fechita}
         setFechita={setFechita}
         submitTarea={submitTarea}
         changeTarea={changeTarea}

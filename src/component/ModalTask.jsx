@@ -11,7 +11,6 @@ export default function ModalTask({
   tarea,
   changeTarea,
   submitTarea,
-  fechita,
   setFechita,
   switcher,
 }) {
@@ -42,7 +41,7 @@ export default function ModalTask({
               <DatePicker
                 className="form-control "
                 name="fecha"
-                selected={new Date(fechita)}
+                selected={new Date(tarea.fecha)}
                 //onChange={changeTarea}
                 onChange={(date) => setFechita(date)}
                 type="date"
