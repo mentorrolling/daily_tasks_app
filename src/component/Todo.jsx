@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useReducer } from "react";
 import { reducer } from "../helpers/functionReducer";
+import { SwitchContext } from "../helpers/SwitchContext";
+
 import FormTodo from "./FormTodo";
 import ListTodo from "./ListTodo";
 
@@ -85,9 +87,9 @@ export default function Todo() {
     dispatch({ type: "deleteTasks" });
   };
 
-  const handleDelete = (tareaID) => {
-    dispatch({ type: "delete", payload: tareaID });
-  };
+  // const handleDelete = (tareaID) => {
+  //   dispatch({ type: "delete", payload: tareaID });
+  // };
   const handleUpdate = (tarea) => {
     dispatch({ type: "update", payload: tarea });
   };
@@ -107,49 +109,49 @@ export default function Todo() {
       <div className="container">
         <div className="row mt-3">
           <div className="col">
-            <div className="card">
-              <div className="col mt-3 ">
-                <Form.Check
-                  className="float-right switch"
-                  type="switch"
-                  id="custom-switch"
-                  checked={switcher}
-                  onChange={handleSwitch}
-                />
-              </div>
-              <div className="card-body text-center pt-0">
-                <h1
-                  className={
-                    switcher ? "card-title letrasDarkMode" : "card-title"
-                  }
-                >
-                  <img
-                    className="pb-2"
-                    src={switcher ? LogoDark : Logo}
-                    alt="Logo"
+            <SwitchContext.Provider value={{ switcher, setSwitcher }}>
+              <div className="card">
+                <div className="col mt-3 ">
+                  <Form.Check
+                    className="float-right switch"
+                    type="switch"
+                    id="custom-switch"
+                    checked={switcher}
+                    onChange={handleSwitch}
                   />
-                  TasksApp
-                </h1>
-                <FormTodo
-                  handleChange={handleChange}
-                  formValues={formValues}
-                  handleSubmit={handleSubmit}
+                </div>
+                <div className="card-body text-center pt-0">
+                  <h1
+                    className={
+                      switcher ? "card-title letrasDarkMode" : "card-title"
+                    }
+                  >
+                    <img
+                      className="pb-2"
+                      src={switcher ? LogoDark : Logo}
+                      alt="Logo"
+                    />
+                    TasksApp
+                  </h1>
+                  <FormTodo
+                    handleChange={handleChange}
+                    formValues={formValues}
+                    handleSubmit={handleSubmit}
+                    startDate={startDate}
+                    setStartDate={setStartDate}
+                    show={show}
+                  />
+                </div>
+                <ListTodo
+                  state={state}
+                  toggle={toggle}
+                  deleteTaskDone={deleteTaskDone}
                   startDate={startDate}
                   setStartDate={setStartDate}
-                  show={show}
-                  switcher={switcher}
+                  handleUpdate={handleUpdate}
                 />
               </div>
-              <ListTodo
-                state={state}
-                toggle={toggle}
-                deleteTaskDone={deleteTaskDone}
-                startDate={startDate}
-                setStartDate={setStartDate}
-                handleUpdate={handleUpdate}
-                switcher={switcher}
-              />
-            </div>
+            </SwitchContext.Provider>
           </div>
         </div>
       </div>

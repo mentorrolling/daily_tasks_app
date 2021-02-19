@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
+import { SwitchContext } from "../helpers/SwitchContext";
+
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
@@ -11,8 +13,9 @@ export default function FormTodo({
   startDate,
   setStartDate,
   show,
-  switcher,
 }) {
+  const switcher = useContext(SwitchContext);
+
   // useEffect(() => {}, [startDate]);
   return (
     <>

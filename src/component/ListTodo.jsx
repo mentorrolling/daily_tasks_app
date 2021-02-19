@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { SwitchContext } from "../helpers/SwitchContext";
 
 import moment from "moment";
 
@@ -11,7 +12,6 @@ export default function ListTodo({
   deleteTaskDone,
   toggle,
   handleUpdate,
-  switcher,
 }) {
   const newArray = state.filter((item) => {
     return moment(item.fecha).isSameOrBefore(moment().format());
@@ -20,6 +20,9 @@ export default function ListTodo({
   const [tarea, setTarea] = useState({});
   const [fechita, setFechita] = useState("");
   const [show, setShow] = useState(false);
+
+  const switcher = useContext(SwitchContext);
+
   const handleClose = () => setShow(false);
   const handleShow = (id) => {
     setShow(true);
@@ -109,7 +112,7 @@ export default function ListTodo({
         setFechita={setFechita}
         submitTarea={submitTarea}
         changeTarea={changeTarea}
-        switcher={switcher}
+        // switcher={switcher}
       />
     </>
   );

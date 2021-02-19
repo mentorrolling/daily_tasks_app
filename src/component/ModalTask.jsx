@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
+import { SwitchContext } from "../helpers/SwitchContext";
 import { Modal, Button, Form } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import moment from "moment";
@@ -12,11 +13,12 @@ export default function ModalTask({
   changeTarea,
   submitTarea,
   setFechita,
-  switcher,
 }) {
   useEffect(() => {
     setFechita(moment(tarea.fecha).format("YYYY MM DD"));
   }, []);
+
+  const switcher = useContext(SwitchContext);
 
   return (
     <>
