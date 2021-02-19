@@ -21,7 +21,7 @@ export default function ListTodo({
   const [fechita, setFechita] = useState("");
   const [show, setShow] = useState(false);
 
-  const switcher = useContext(SwitchContext);
+  const { switcher } = useContext(SwitchContext);
 
   const handleClose = () => setShow(false);
   const handleShow = (id) => {

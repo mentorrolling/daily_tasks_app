@@ -18,7 +18,7 @@ export default function ModalTask({
     setFechita(moment(tarea.fecha).format("YYYY MM DD"));
   }, []);
 
-  const switcher = useContext(SwitchContext);
+  const { switcher } = useContext(SwitchContext);
 
   return (
     <>

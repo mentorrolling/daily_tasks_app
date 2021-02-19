@@ -14,7 +14,7 @@ export default function FormTodo({
   setStartDate,
   show,
 }) {
-  const switcher = useContext(SwitchContext);
+  const { switcher } = useContext(SwitchContext);
 
   // useEffect(() => {}, [startDate]);
   return (

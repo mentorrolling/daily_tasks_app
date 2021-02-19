@@ -128,7 +128,7 @@ export default function Todo() {
                   >
                     <img
                       className="pb-2"
-                      src={switcher ? LogoDark : Logo}
+                      src={switcher === true ? LogoDark : Logo}
                       alt="Logo"
                     />
                     TasksApp

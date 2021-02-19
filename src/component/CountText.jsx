@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
+import { SwitchContext } from "../helpers/SwitchContext";
 
-export default function CountText({ count, state, deleteTaskDone, switcher }) {
+export default function CountText({ count, state, deleteTaskDone }) {
+  const { switcher } = useContext(SwitchContext);
   return (
     <>
       <p className="card-text text-center ">
