@@ -53,7 +53,7 @@ export default function ListTodo({
 
   const submitTarea = (e) => {
     e.preventDefault();
-    console.log("Submit");
+    // console.log("Submit");
     handleUpdate(tarea);
   };
   return (
