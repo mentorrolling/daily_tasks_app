@@ -80,7 +80,11 @@ export default function ListTodo({
               className={tarea.done === true ? "lheight tachado" : "lheight"}
               onClick={() => toggle(tarea.id)}
             >
-              {tarea.done === true ? "✔" : "📌"}
+              {tarea.done === true ? (
+                <i class="fa fa-check fa-1x" aria-hidden="true"></i>
+              ) : (
+                <i class="fa fa-thumb-tack fa-1x mr-1" aria-hidden="true"></i>
+              )}
               {tarea.tarea}
             </span>
             {tarea.done === false && (
